@@ -1,0 +1,25 @@
+# Vivado build and simulation files
+*.jou
+*.log
+*.str
+*.bin
+*.rpt
+*.xml
+*.html
+*.backup
+*.runs/
+*.data/
+*.cache/
+*.sim/
+*.webtalk/
+*.sdk/
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+
+# OS generated files
+.DS_Store
+Thumbs.db
