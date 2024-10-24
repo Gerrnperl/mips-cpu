@@ -32,7 +32,7 @@
 
 // RAM
 // 32位宽，4096个地址
-// 设置使能后，需要一个时钟周期后才能完成读写
+// 设置使能后，在下一个上升沿完成读写
 module ram (
     input wire clk,
     input wire reset,
@@ -40,12 +40,10 @@ module ram (
     input wire [3:0] we,
     input wire [11:0] addr,
     input wire [31:0] din,
-    output reg [31:0] dout
+    output wire [31:0] dout
 );
 
   reg en;
-  reg [31:0] idata;
-  wire [31:0] odata;
 
   // 设定
   always @(negedge clk or negedge reset) begin
@@ -61,29 +59,12 @@ module ram (
     end
   end
 
-  // 读写
-  always @(negedge clk or negedge reset) begin
-    if (!reset) begin
-      idata <= 0;
-      dout  <= 0;
-    end else begin
-      // 写
-      if (we) begin
-        idata <= din;
-      end  // 读
-      else if (re) begin
-        dout <= odata;
-      end
-    end
-  end
-
-
   blk_mem_gen_0 uut (
       .clka (clk),
       .ena  (en),
       .wea  (we),
       .addra(addr),
-      .dina (idata),
+      .dina (din),
       .douta(dout)
   );
 
