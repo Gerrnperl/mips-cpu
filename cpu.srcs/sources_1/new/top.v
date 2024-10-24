@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: HFUT
+// Engineer: Lu Jipeng, 2022217492 
 // 
 // Create Date: 2024/10/23 21:59:02
 // Design Name: 
@@ -24,6 +24,6 @@ module top(
         input wire clk,
         input wire reset,
         output wire [7:0] seg,
-        output wire [7:0] an,
+        output wire [7:0] an
     );
 endmodule

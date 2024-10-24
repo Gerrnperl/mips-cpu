@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: HFUT
+// Engineer: Lu Jipeng, 2022217492 
 // 
 // Create Date: 2024/10/23 21:22:45
 // Design Name: 
