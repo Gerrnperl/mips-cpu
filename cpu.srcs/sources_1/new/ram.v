@@ -30,7 +30,7 @@
 //   output [31:0]douta;    // 数据输出
 // endmodule
 
-// RAM
+// module: RAM
 // 32位宽，4096个地址
 // 设置使能后，在下一个上升沿完成读写
 module ram (

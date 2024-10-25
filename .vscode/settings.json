@@ -1,3 +1,4 @@
 {
-	"files.encoding": "gb18030"
+	"files.encoding": "gb18030",
+	"outline-map.region.tag": "module:"
 }
