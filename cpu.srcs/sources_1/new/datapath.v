@@ -24,7 +24,8 @@
 // | --- | --- | --- | --- |
 // | Jump | J指令目标地址选择 | 由Branch决定输出 | 选择J目标地址 |
 // | Branch | B指令目标地址选择 | 选择PC+4地址 | 选择转移地址 PC = (PC+4) + Imm \* 4 |
-// | ALUSrc | ALU端口B输入选择 | 选择寄存器rt数据 | 选择32位立即数<font class="font6">(符号扩展后)</font> |
+// | aluSrcA | ALU端口A输入选择 | 选择寄存器rs数据 | 选择 shamt |
+// | aluSrcB | ALU端口B输入选择 | 选择寄存器rt数据 | 选择32位立即数<font class="font6">(符号扩展后)</font> |
 // | MemRead | 存储器读控制 | 禁止存储器读 | 使能存储器读 |
 // | MemWrite | 存储器写控制 | 禁止存储器写 | 使能存储器写 |
 // | MemtoReg | 寄存器写入数据选择 | 选择ALU输出 | 选择存储器数据 |
@@ -44,7 +45,8 @@ module Datapath (
 
     input wire jump,
     input wire branch,
-    input wire aluSrc,
+    input wire aluSrcA,
+    input wire aluSrcB,
     input wire memToReg,
     input wire regWrite,
     input wire regDst,
@@ -60,7 +62,8 @@ module Datapath (
   wire [31:0] regData2;
   wire [31:0] immExt;
 
-  wire [31:0] aluSrcB;
+  wire [31:0] aluSrcASelect;
+  wire [31:0] aluSrcBSelect;
   wire [31:0] regWriteData;
   wire [4:0] regWriteDst;
 
@@ -71,6 +74,10 @@ module Datapath (
   wire lrWrite;
   wire regWriteAndLR;
   assign regWriteAndLR = regWrite | lrWrite;
+
+  // lui and shamt* instructions
+  wire shamtImm16;
+  wire [4:0] shamt;
 
   wire zero;
   wire negative;
@@ -162,17 +169,38 @@ module Datapath (
       .rdata2(regData2)
   );
 
+  LUIController lui_controller (
+      .opcode(ir[5:0]),
+      .shamtImm16(shamtImm16)
+  );
+
+  Select2_1 #(32) shamt_select (
+      .inp0(ir[10:6]),
+      .inp1(5'b10000), // 左移16位
+      .sel (shamtImm16),
+      .enb (1'b0),
+      .out (shamt)
+  );
+
+  Select2_1 #(32) alu_srcA_select (
+      .inp0(regData1),
+      .inp1(shamt),
+      .sel (aluSrcA),
+      .enb (1'b0),
+      .out (aluSrcASelect)
+  );
+
   Select2_1 #(32) alu_srcB_select (
       .inp0(regData2),
       .inp1(immExt),
-      .sel (aluSrc),
+      .sel (aluSrcB),
       .enb (1'b0),
-      .out (aluSrcB)
+      .out (aluSrcBSelect)
   );
 
   ALU alu0 (
-      .a(regData1),
-      .b(aluSrcB),
+      .a(aluSrcASelect),
+      .b(aluSrcBSelect),
       .func(aluControl),
       .negative(negative),
       .zero(zero),

@@ -36,7 +36,8 @@ module CPU (
 
   wire jump;
   wire branch;
-  wire aluSrc;
+  wire aluSrcA;
+  wire aluSrcB;
   wire memWrite;
   wire memToReg;
   wire regWrite;
@@ -47,7 +48,8 @@ module CPU (
       .instruction(ir),
       .jump(jump),
       .branch(branch),
-      .aluSrc(aluSrc),
+      .aluSrcA(aluSrcA),
+      .aluSrcB(aluSrcB),
       .memWrite(dataRamWriteEna),
       .memToReg(memToReg),
       .regWrite(regWrite),
@@ -66,7 +68,8 @@ module CPU (
 
       .jump(jump),
       .branch(branch),
-      .aluSrc(aluSrc),
+      .aluSrcA(aluSrcA),
+      .aluSrcB(aluSrcB),
       .memToReg(memToReg),
       .regWrite(regWrite),
       .regDst(regDst),
