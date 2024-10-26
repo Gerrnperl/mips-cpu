@@ -193,8 +193,8 @@ module ALU_Test;
     // Test Shift Left operation
     $display("Test Shift Left operation");
     // Test case 1 - Shift Left
-    a = 32'h00000001;
     b = 32'h00000001;
+    a = 32'h00000001;
     func = 4'b0101;
     #10;
     if (result !== 32'h00000002) begin
@@ -202,8 +202,8 @@ module ALU_Test;
       $display("Test case 1 failed");
     end
     // Test case 2 - Shift Left with carry
-    a = 32'h80000000;
-    b = 32'h00000001;
+    b = 32'h80000000;
+    a = 32'h00000001;
     func = 4'b0101;
     #10;
     if (result !== 32'h00000000 || carry !== 1'b1) begin
@@ -214,8 +214,8 @@ module ALU_Test;
     // Test Shift Right operation
     $display("Test Shift Right operation");
     // Test case 1 - Shift Right
-    a = 32'h00000002;
-    b = 32'h00000001;
+    b = 32'h00000002;
+    a = 32'h00000001;
     func = 4'b0110;
     #10;
     if (result !== 32'h00000001) begin
@@ -223,8 +223,8 @@ module ALU_Test;
       $display("Test case 1 failed");
     end
     // Test case 2 - Shift Right with carry
-    a = 32'h00000001;
     b = 32'h00000001;
+    a = 32'h00000001;
     func = 4'b0110;
     #10;
     if (result !== 32'h00000000 || carry !== 1'b1) begin
@@ -235,8 +235,8 @@ module ALU_Test;
     // Test Arithmetic Shift Right operation
     $display("Test Arithmetic Shift Right operation");
     // Test case 1 - Arithmetic Shift Right
-    a = 32'h80000000;
-    b = 32'h00000001;
+    b = 32'h80000000;
+    a = 32'h00000001;
     func = 4'b0111;
     #10;
     if (result !== 32'hC0000000) begin
@@ -244,8 +244,8 @@ module ALU_Test;
       $display("Test case 1 failed");
     end
     // Test case 2 - Arithmetic Shift Right
-    a = 32'h00000001;
     b = 32'h00000001;
+    a = 32'h00000001;
     func = 4'b0111;
     #10;
     if (result !== 32'h00000000) begin

@@ -85,17 +85,17 @@ module ALU (
       end
 
       4'b0101: begin  // shift left
-        {carry, result} <= a << b[4:0];
+        {carry, result} <= b << a[4:0];
       end
 
       4'b0110: begin  // shift right
-        carry <= a[0];
-        result <= a >> b[4:0];
+        carry <= b[0];
+        result <= b >> a[4:0];
       end
 
       4'b0111: begin  // arith shift right
-        carry <= a[0];
-        result <= a_signed >>> b[4:0];
+        carry <= b[0];
+        result <= b_signed >>> a[4:0];
       end
 
       4'b1000: begin  // mul
