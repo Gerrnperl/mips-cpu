@@ -148,10 +148,12 @@ module Regfile (
     input reset,  //异步复位信号,高电平时寄存器置零
     input we,  //寄存器读写有效信号,低电平时允许寄存器写入数据，高电平时允许寄存器读出数据
     input [31:0] wdata,  //写寄存器数据,数据在clk上升沿时被写入
-    output reg [31:0] rdata  //raddr所对应寄存器的输出数据
+    output [31:0] rdata  //raddr所对应寄存器的输出数据
 );
 
   reg [31:0] register;
+
+  assign rdata = register;
 
   initial begin
     register = 32'b0;
@@ -166,11 +168,5 @@ module Regfile (
     end
   end
 
-  // 读取数据
-  always @(posedge clk) begin
-    if (we) begin
-      rdata <= register;
-    end
-  end
 endmodule
 

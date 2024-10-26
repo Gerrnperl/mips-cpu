@@ -38,7 +38,7 @@ module reg_test;
   // Instantiate the Regfiles module
   Regfiles uut (
     .clk(clk),
-    .rst(rst),
+    .reset(rst),
     .we(we),
     .raddr1(raddr1),
     .raddr2(raddr2),
