@@ -35,7 +35,7 @@ module ram_test;
     wire [31:0] dout;
 
     // Instantiate the RAM module
-    ram uut (
+    InstRAM uut (
         .clk(clk),
         .reset(reset),
         .re(re),

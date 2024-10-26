@@ -30,10 +30,11 @@
 //   output [31:0]douta;    // 数据输出
 // endmodule
 
-// module: RAM
+// module: InstRAM
+// 程序存储器
 // 32位宽，4096个地址
 // 设置使能后，在下一个上升沿完成读写
-module ram (
+module InstRAM (
     input wire clk,
     input wire reset,
     input wire re,
@@ -60,6 +61,48 @@ module ram (
   end
 
   blk_mem_gen_0 uut (
+      .clka (clk),
+      .ena  (en),
+      .wea  (we),
+      .addra(addr),
+      .dina (din),
+      .douta(dout)
+  );
+
+endmodule
+
+
+// module: DataRAM
+// 数据存储器
+// 32位宽，4096个地址
+// 设置使能后，在下一个上升沿完成读写
+module DataRAM (
+    input wire clk,
+    input wire reset,
+    input wire re,
+    input wire [3:0] we,
+    input wire [11:0] addr,
+    input wire [31:0] din,
+    output wire [31:0] dout
+);
+
+  reg en;
+
+  // 设定
+  always @(negedge clk or negedge reset) begin
+    if (!reset) begin
+      en <= 0;
+    end else begin
+      // 读写使能
+      if (we || re) begin
+        en <= 1;
+      end else begin
+        en <= 0;
+      end
+    end
+  end
+
+  blk_mem_gen_1 uut (
       .clka (clk),
       .ena  (en),
       .wea  (we),
