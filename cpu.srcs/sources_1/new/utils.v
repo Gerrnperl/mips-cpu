@@ -73,6 +73,8 @@ endmodule
 
 // module: Select32_1 32选1选择器
 // 每个输入信号为32位
+// 选择信号为5位
+// 使能信号为1位, 0为选择输入信号, 1为输出0
 module Select32_1 (
     input [31:0] inp0,
     input [31:0] inp1,
@@ -153,5 +155,62 @@ module Select32_1 (
     end
     ;
   end
+
+endmodule
+
+// module: Select2_1 2选1选择器
+// 每个输入信号为WIDTH位
+// 选择信号为1位
+// 使能信号为1位, 0为选择输入信号, 1为输出0
+module Select2_1 #(parameter WIDTH = 32) (
+    input [WIDTH - 1:0] inp0,
+    input [WIDTH - 1:0] inp1,
+    input sel,
+    input enb,
+    output reg [31:0] out
+);
+  
+    always @(*) begin
+      if (!enb) begin
+        case (sel)
+          1'b0: out = inp0;
+          default: out = inp1;
+        endcase
+      end else begin
+        out = 32'b0;
+      end
+    end
+endmodule
+
+
+
+// module: ShiftLeft2 32位左移2位
+module ShiftLeft32_2 (
+    input wire [31:0] inp,
+    output wire [31:0] out
+);
+
+  assign out = {inp[29:0], 2'b00};
+
+endmodule
+
+// module: SignExtend 16位符号扩展为32位
+module SignExtend16_32 (
+    input wire [15:0] inp,
+    output wire [31:0] out
+);
+
+  assign out = {{16{inp[15]}}, inp};
+
+endmodule
+
+// module: Adder32 32位加法器
+module Adder32 (
+    input wire [31:0] a,
+    input wire [31:0] b,
+    output reg [31:0] sum
+);
+
+  assign sum = a + b;
 
 endmodule
