@@ -208,7 +208,7 @@ endmodule
 module Adder32 (
     input wire [31:0] a,
     input wire [31:0] b,
-    output reg [31:0] sum
+    output wire [31:0] sum
 );
 
   assign sum = a + b;

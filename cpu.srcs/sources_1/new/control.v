@@ -64,6 +64,53 @@
 // | RegDst | 寄存器写地址选择 | 选择指令rt域 | 选择指令rd域 |
 // | ALU\_Control | 4位ALU操作控制 |  |  |
 
+module PCSelect (
+    input wire [31:0] pcPlus4,
+    input wire [31:0] pcBranch,
+    input wire [31:0] pcJump,
+    // condition
+    input wire [5:0] opcode,
+    input wire jump,
+    input wire branch,
+    // ALU Flags
+    input wire zero,
+    input wire negative,
+    input wire carry,
+    input wire overflow,
+    output reg [31:0] pcNext
+);
+
+
+  always @(*) begin
+    if (jump) begin // J-type instructions
+      pcNext = pcJump;
+    end else if (branch) begin // Jump 为 0 时，PC 由 Branch 控制
+      case (opcode)
+        6'b000100: begin  // beq
+          if (zero) begin
+            pcNext = pcBranch;
+          end else begin
+            pcNext = pcPlus4;
+          end
+        end
+        6'b000101: begin  // bne
+          if (~zero) begin
+            pcNext = pcBranch;
+          end else begin
+            pcNext = pcPlus4;
+          end
+        end
+        default: begin
+          pcNext = pcPlus4;
+        end
+      endcase
+    end else begin
+      pcNext = pcPlus4;
+    end
+  end
+
+endmodule
+
 module MainInstDecode (
     input wire [31:0] instruction,
     output reg jump,
