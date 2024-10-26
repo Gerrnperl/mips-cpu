@@ -167,7 +167,7 @@ module Select2_1 #(parameter WIDTH = 32) (
     input [WIDTH - 1:0] inp1,
     input sel,
     input enb,
-    output reg [31:0] out
+    output reg [WIDTH - 1:0] out
 );
   
     always @(*) begin
@@ -175,6 +175,34 @@ module Select2_1 #(parameter WIDTH = 32) (
         case (sel)
           1'b0: out = inp0;
           default: out = inp1;
+        endcase
+      end else begin
+        out = 32'b0;
+      end
+    end
+endmodule
+
+// module: Select4_1 4选1选择器
+// 每个输入信号为WIDTH位
+// 选择信号为2位
+// 使能信号为1位, 0为选择输入信号, 1为输出0
+module Select4_1 #(parameter WIDTH = 32) (
+    input [WIDTH - 1:0] inp0,
+    input [WIDTH - 1:0] inp1,
+    input [WIDTH - 1:0] inp2,
+    input [WIDTH - 1:0] inp3,
+    input [1:0] sel,
+    input enb,
+    output reg [WIDTH - 1:0] out
+);
+  
+    always @(*) begin
+      if (!enb) begin
+        case (sel)
+          2'b00: out = inp0;
+          2'b01: out = inp1;
+          2'b10: out = inp2;
+          default: out = inp3;
         endcase
       end else begin
         out = 32'b0;

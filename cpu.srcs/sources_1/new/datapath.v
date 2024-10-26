@@ -66,6 +66,12 @@ module Datapath (
 
   wire [31:0] bTarget;
 
+  // Á´½Ó¼Ä´æÆ÷LR, R31
+  wire [4:0] regLR = 5'b11111;
+  wire lrWrite;
+  wire regWriteAndLR;
+  assign regWriteAndLR = regWrite | lrWrite;
+
   wire zero;
   wire negative;
   wire carry;
@@ -119,18 +125,27 @@ module Datapath (
       .out(immExt)
   );
 
-  Select2_1 #(32) mem2reg_select (
+  LRController lr_controller (
+      .opcode (ir[5:0]),
+      .lrWrite(lrWrite)
+  );
+
+  Select4_1 #(32) mem2reg_select (
       .inp0(aluResult),
       .inp1(memReadData),
-      .sel (memToReg),
+      .inp2(pc),
+      .inp3(pc),
+      .sel ({lrWrite, memToReg}),
       .enb (1'b0),
       .out (regWriteData)
   );
 
-  Select2_1 #(5) reg_dst_select (
-      .inp0(ir[20:16]),   // rt
-      .inp1(ir[15:11]),   // rd
-      .sel (regDst),
+  Select4_1 #(5) reg_dst_select (
+      .inp0(ir[20:16]),          // rt
+      .inp1(ir[15:11]),          // rd
+      .inp2(regLR),              // lr
+      .inp3(regLR),              // lr
+      .sel ({lrWrite, regDst}),
       .enb (1'b0),
       .out (regWriteDst)
   );
@@ -138,7 +153,7 @@ module Datapath (
   Regfiles regfiles0 (
       .clk(clka),
       .reset(reset),
-      .we(regWrite),
+      .we(regWriteAndLR),
       .raddr1(ir[25:21]),  // rs
       .raddr2(ir[20:16]),  // rt
       .waddr(regWriteDst),  // ´æ´¢µ½ rt (regDst == 0) »ò rd (regDst == 1)
