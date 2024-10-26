@@ -77,182 +77,182 @@ module MainInstDecode (
     output reg [3:0] aluOp
 );
 
-    wire [5:0] opcode;
-    wire [5:0] func;
+  wire [5:0] opcode;
+  wire [5:0] func;
 
-    assign opcode = instruction[31:26];
-    assign func = instruction[5:0];
+  assign opcode = instruction[31:26];
+  assign func   = instruction[5:0];
 
-    always @(*) begin
-        case (opcode)
-            6'b000000: begin // R-type instructions
-                if (func == 6'b001111) begin // jr
-                    jump = 1;
-                    branch = 0;
-                    aluSrc = 0;
-                    memRead = 0;
-                    memWrite = 0;
-                    memToReg = 0;
-                    regWrite = 0;
-                    regDst = 0;
-                    aluOp = 4'b0010;
-                end else begin
-                    jump = 0;
-                    branch = 0;
-                    aluSrc = 0;
-                    memRead = 0;
-                    memWrite = 0;
-                    memToReg = 0;
-                    regWrite = 1;
-                    regDst = 1;
-                    aluOp = 4'b0010;
-                end
-            end
-            6'b001000: begin // addi
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 1;
-                regDst = 0;
-                aluOp = 4'b0000;
-            end
-            6'b001001: begin // subi
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 1;
-                regDst = 0;
-                aluOp = 4'b0001;
-            end
-            6'b001100: begin // andi
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 1;
-                regDst = 0;
-                aluOp = 4'b1000;
-            end
-            6'b001101: begin // ori
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 1;
-                regDst = 0;
-                aluOp = 4'b1001;
-            end
-            6'b001110: begin // xori
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 1;
-                regDst = 0;
-                aluOp = 4'b1010;
-            end
-            6'b001111: begin // lui
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 1;
-                regDst = 0;
-                aluOp = 4'b1011;
-            end
-            6'b100011: begin // lw
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 1;
-                memWrite = 0;
-                memToReg = 1;
-                regWrite = 1;
-                regDst = 0;
-                aluOp = 4'b0000;
-            end
-            6'b101011: begin // sw
-                jump = 0;
-                branch = 0;
-                aluSrc = 1;
-                memRead = 0;
-                memWrite = 1;
-                memToReg = 0;
-                regWrite = 0;
-                regDst = 0;
-                aluOp = 4'b0000;
-            end
-            6'b000100: begin // beq
-                jump = 0;
-                branch = 1;
-                aluSrc = 0;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 0;
-                regDst = 0;
-                aluOp = 4'b0001;
-            end
-            6'b000101: begin // bne
-                jump = 0;
-                branch = 1;
-                aluSrc = 0;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 0;
-                regDst = 0;
-                aluOp = 4'b0001;
-            end
-            6'b000010: begin // jr
-                jump = 1;
-                branch = 0;
-                aluSrc = 0;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 0;
-                regDst = 0;
-                aluOp = 4'b1111;
-            end
-            6'b000011: begin // jal
-                jump = 1;
-                branch = 0;
-                aluSrc = 0;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 0;
-                regDst = 0;
-                aluOp = 4'b1111;
-            end
-            default: begin
-                jump = 0;
-                branch = 0;
-                aluSrc = 0;
-                memRead = 0;
-                memWrite = 0;
-                memToReg = 0;
-                regWrite = 0;
-                regDst = 0;
-                aluOp = 4'b0000;
-            end
-        endcase
-    end
+  always @(*) begin
+    case (opcode)
+      6'b000000: begin  // R-type instructions
+        if (func == 6'b001111) begin  // jr
+          jump = 1;
+          branch = 0;
+          aluSrc = 0;
+          memRead = 0;
+          memWrite = 0;
+          memToReg = 0;
+          regWrite = 0;
+          regDst = 0;
+          aluOp = 4'b0010;
+        end else begin
+          jump = 0;
+          branch = 0;
+          aluSrc = 0;
+          memRead = 0;
+          memWrite = 0;
+          memToReg = 0;
+          regWrite = 1;
+          regDst = 1;
+          aluOp = 4'b0010;
+        end
+      end
+      6'b001000: begin  // addi
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b0000;
+      end
+      6'b001001: begin  // subi
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b0001;
+      end
+      6'b001100: begin  // andi
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b1000;
+      end
+      6'b001101: begin  // ori
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b1001;
+      end
+      6'b001110: begin  // xori
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b1010;
+      end
+      6'b001111: begin  // lui
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b1011;
+      end
+      6'b100011: begin  // lw
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 1;
+        memWrite = 0;
+        memToReg = 1;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b0000;
+      end
+      6'b101011: begin  // sw
+        jump = 0;
+        branch = 0;
+        aluSrc = 1;
+        memRead = 0;
+        memWrite = 1;
+        memToReg = 0;
+        regWrite = 0;
+        regDst = 0;
+        aluOp = 4'b0000;
+      end
+      6'b000100: begin  // beq
+        jump = 0;
+        branch = 1;
+        aluSrc = 0;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 0;
+        regDst = 0;
+        aluOp = 4'b0001;
+      end
+      6'b000101: begin  // bne
+        jump = 0;
+        branch = 1;
+        aluSrc = 0;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 0;
+        regDst = 0;
+        aluOp = 4'b0001;
+      end
+      6'b000010: begin  // jr
+        jump = 1;
+        branch = 0;
+        aluSrc = 0;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 0;
+        regDst = 0;
+        aluOp = 4'b1111;
+      end
+      6'b000011: begin  // jal
+        jump = 1;
+        branch = 0;
+        aluSrc = 0;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 0;
+        regDst = 0;
+        aluOp = 4'b1111;
+      end
+      default: begin
+        jump = 0;
+        branch = 0;
+        aluSrc = 0;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 0;
+        regDst = 0;
+        aluOp = 4'b0000;
+      end
+    endcase
+  end
 
 endmodule
 
@@ -262,41 +262,41 @@ module ALUDecode (
     output reg  [3:0] aluControl
 );
 
-    always @(*) begin
-        case (aluOp)
-            4'b0010: begin // R-type instructions
-                case (func)
-                    6'b100000: aluControl = 4'b0000; // add
-                    6'b100001: aluControl = 4'b0001; // sub
-                    6'b100010: aluControl = 4'b0010; // and
-                    6'b100011: aluControl = 4'b0011; // or
-                    6'b100100: aluControl = 4'b0100; // xor
-                    6'b000101: aluControl = 4'b0101; // sll
-                    6'b000110: aluControl = 4'b0110; // srl
-                    6'b000111: aluControl = 4'b0111; // sra
-                    6'b101000: aluControl = 4'b1000; // mul
-                    6'b101001: aluControl = 4'b1001; // mulh
-                    6'b101010: aluControl = 4'b1010; // div
-                    6'b101011: aluControl = 4'b1011; // rem
-                    6'b101100: aluControl = 4'b1100; // slt
-                    6'b101101: aluControl = 4'b1101; // sltu
-                    6'b101110: aluControl = 4'b1110; // nor
-                    6'b001111: aluControl = 4'b1111; // jr
-                    default:   aluControl = 4'bxxxx; // undefined
-                endcase
-            end
-            4'b0000: aluControl = 4'b0000; // addi, lw, sw
-            4'b0001: aluControl = 4'b0001; // subi, beq, bne
-            4'b1000: aluControl = 4'b0010; // andi
-            4'b1001: aluControl = 4'b0011; // ori
-            4'b1010: aluControl = 4'b0100; // xori
-            4'b1011: aluControl = 4'b0101; // lui
-            4'b1100: aluControl = 4'b1100; // slti
-            4'b1101: aluControl = 4'b1101; // sltiu
-            4'b1111: aluControl = 4'b1111; // j-type instructions. ALU is not used
-            default: aluControl = 4'bxxxx; // undefined
+  always @(*) begin
+    case (aluOp)
+      4'b0010: begin  // R-type instructions
+        case (func)
+          6'b100000: aluControl = 4'b0000;  // add
+          6'b100001: aluControl = 4'b0001;  // sub
+          6'b100010: aluControl = 4'b0010;  // and
+          6'b100011: aluControl = 4'b0011;  // or
+          6'b100100: aluControl = 4'b0100;  // xor
+          6'b000101: aluControl = 4'b0101;  // sll
+          6'b000110: aluControl = 4'b0110;  // srl
+          6'b000111: aluControl = 4'b0111;  // sra
+          6'b101000: aluControl = 4'b1000;  // mul
+          6'b101001: aluControl = 4'b1001;  // mulh
+          6'b101010: aluControl = 4'b1010;  // div
+          6'b101011: aluControl = 4'b1011;  // rem
+          6'b101100: aluControl = 4'b1100;  // slt
+          6'b101101: aluControl = 4'b1101;  // sltu
+          6'b101110: aluControl = 4'b1110;  // nor
+          6'b001111: aluControl = 4'b1111;  // jr
+          default:   aluControl = 4'bxxxx;  // undefined
         endcase
-    end
+      end
+      4'b0000: aluControl = 4'b0000;  // addi, lw, sw
+      4'b0001: aluControl = 4'b0001;  // subi, beq, bne
+      4'b1000: aluControl = 4'b0010;  // andi
+      4'b1001: aluControl = 4'b0011;  // ori
+      4'b1010: aluControl = 4'b0100;  // xori
+      4'b1011: aluControl = 4'b0101;  // lui
+      4'b1100: aluControl = 4'b1100;  // slti
+      4'b1101: aluControl = 4'b1101;  // sltiu
+      4'b1111: aluControl = 4'b1111;  // j-type instructions. ALU is not used
+      default: aluControl = 4'bxxxx;  // undefined
+    endcase
+  end
 
 endmodule
 
@@ -313,25 +313,25 @@ module Controller (
     output wire [3:0] aluControl
 );
 
-	wire [3:0] aluOp;
+  wire [3:0] aluOp;
 
-	MainInstDecode mainInstDecode(
-		.instruction(instruction),
-		.jump(jump),
-		.branch(branch),
-		.aluSrc(aluSrc),
-        .memRead(memRead),
-		.memWrite(memWrite),
-		.memToReg(memToReg),
-		.regWrite(regWrite),
-		.regDst(regDst),
-		.aluOp(aluOp)
-	);
+  MainInstDecode mainInstDecode (
+      .instruction(instruction),
+      .jump(jump),
+      .branch(branch),
+      .aluSrc(aluSrc),
+      .memRead(memRead),
+      .memWrite(memWrite),
+      .memToReg(memToReg),
+      .regWrite(regWrite),
+      .regDst(regDst),
+      .aluOp(aluOp)
+  );
 
-	ALUDecode aluDecode(
-		.func(instruction[5:0]),
-		.aluOp(aluOp),
-		.aluControl(aluControl)
-	);
+  ALUDecode aluDecode (
+      .func(instruction[5:0]),
+      .aluOp(aluOp),
+      .aluControl(aluControl)
+  );
 
 endmodule
