@@ -69,6 +69,7 @@ module MainInstDecode (
     output reg jump,
     output reg branch,
     output reg aluSrc,
+    output reg memRead,
     output reg memWrite,
     output reg memToReg,
     output reg regWrite,
@@ -89,6 +90,7 @@ module MainInstDecode (
                     jump = 1;
                     branch = 0;
                     aluSrc = 0;
+                    memRead = 0;
                     memWrite = 0;
                     memToReg = 0;
                     regWrite = 0;
@@ -98,6 +100,7 @@ module MainInstDecode (
                     jump = 0;
                     branch = 0;
                     aluSrc = 0;
+                    memRead = 0;
                     memWrite = 0;
                     memToReg = 0;
                     regWrite = 1;
@@ -109,6 +112,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 1;
@@ -119,6 +123,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 1;
@@ -129,6 +134,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 1;
@@ -139,6 +145,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 1;
@@ -149,6 +156,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 1;
@@ -159,6 +167,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 1;
@@ -169,6 +178,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 1;
                 memWrite = 0;
                 memToReg = 1;
                 regWrite = 1;
@@ -179,6 +189,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 1;
+                memRead = 0;
                 memWrite = 1;
                 memToReg = 0;
                 regWrite = 0;
@@ -189,6 +200,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 1;
                 aluSrc = 0;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 0;
@@ -199,6 +211,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 1;
                 aluSrc = 0;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 0;
@@ -209,6 +222,7 @@ module MainInstDecode (
                 jump = 1;
                 branch = 0;
                 aluSrc = 0;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 0;
@@ -219,6 +233,7 @@ module MainInstDecode (
                 jump = 1;
                 branch = 0;
                 aluSrc = 0;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 0;
@@ -229,6 +244,7 @@ module MainInstDecode (
                 jump = 0;
                 branch = 0;
                 aluSrc = 0;
+                memRead = 0;
                 memWrite = 0;
                 memToReg = 0;
                 regWrite = 0;
@@ -289,6 +305,7 @@ module Controller (
     output wire jump,
     output wire branch,
     output wire aluSrc,
+    output wire memRead,
     output wire memWrite,
     output wire memToReg,
     output wire regWrite,
@@ -303,6 +320,7 @@ module Controller (
 		.jump(jump),
 		.branch(branch),
 		.aluSrc(aluSrc),
+        .memRead(memRead),
 		.memWrite(memWrite),
 		.memToReg(memToReg),
 		.regWrite(regWrite),
