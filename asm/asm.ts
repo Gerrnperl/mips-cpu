@@ -10,6 +10,12 @@ interface Instruction {
 	srcLine: number;
 }
 
+export interface AssembleResult {
+	binary: number[];
+	symbolTable: Map<string, number>;
+	codeLines: string[];
+}
+
 /**
  * Assembler for this mips cpu
  */
@@ -20,7 +26,7 @@ export class Assembler {
 	 * Assemble the given code
 	 * @param code The code to assemble
 	 */
-	public assemble(code: string) {
+	public assemble(code: string): AssembleResult | null {
 		const lines = code.split('\n');
 		const preprocessed = this.preprocess(lines);
 		let failed = false;
@@ -28,7 +34,8 @@ export class Assembler {
 			try {
 				return this.assembleLine(line, codeLineNum);
 			} catch (e: any) {
-				console.error(`\x1b[31mError at line ${line!.srcLine}: ${e.message}\x1b[0m`);
+				console.error(`\x1b[31mError at line ${line!.srcLine + 1}: ${e.message}\x1b[0m`);
+				console.error(`${line!.srcLine + 1}: ${lines[line!.srcLine]}`);
 				failed = true;
 			}
 		});
@@ -36,7 +43,11 @@ export class Assembler {
 			console.error('\x1b[31mAssembly failed\x1b[0m');
 			return null;
 		}
-		return binary as number[];
+		return {
+			binary: binary as number[],
+			symbolTable: this.symbolTable,
+			codeLines: preprocessed.map(line => line.text)
+		}
 	}
 
 	/**
