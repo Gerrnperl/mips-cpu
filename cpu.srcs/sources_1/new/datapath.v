@@ -93,7 +93,7 @@ module Datapath (
       .pcPlus4(pcPlus4),
       .pcBranch(pcBranch),
       .pcJump(pcJump),
-      .opcode(ir[5:0]),
+      .opcode(ir[31:26]),
       .jump(jump),
       .branch(branch),
       .zero(zero),
