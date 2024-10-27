@@ -234,14 +234,18 @@ module Seg7Decoder (
   end
 endmodule
 
-module clk_seg_div (
+module clk_div (
     input clk0,
     output reg clk
 );
   parameter N = 32'd51200, WIDTH = 32 - 1;
   reg [WIDTH : 0] number = 0;
+  
+  initial begin
+    clk = 1'b0;
+  end
 
-  always @(posedge clk) begin
+  always @(posedge clk0) begin
     if (number == N - 1) begin
       number <= 0;
       clk <= ~clk;

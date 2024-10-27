@@ -22,9 +22,9 @@
 
 module top (
     input wire clk,
-    input wire reset,
-    output wire [7:0] seg,
-    output wire [7:0] an
+    input wire reset
+    // output wire [7:0] seg,
+    // output wire [7:0] an
 );
 
   wire instRamReadEna;
@@ -36,9 +36,15 @@ module top (
   wire [31:0] ir;
   wire [31:0] aluResult;
 
+  wire cpu_clk;
+
+  clk_div #(2'd1, 1'd1) clk_div (
+    .clk0(clk),
+    .clk(cpu_clk)
+  );
 
   CPU cpu (
-      .clk(clk),
+      .clk(cpu_clk),
       .reset(reset),
       .instRamReadEna(instRamReadEna),
       .dataRamReadEna(dataRamReadEna),
@@ -51,21 +57,21 @@ module top (
   );
 
   InstRAM inst_ram (
-      .clk(clka),
+      .clk(clk),
       .reset(reset),
       .re(instRamReadEna),
       .we(4'b0000),  // use as rom
-      .addr(pc[11:0]),
+      .addr(pc[13:2]),
       .din(32'b0),
       .dout(ir)
   );
 
   DataRAM data_ram (
-      .clk(clka),
+      .clk(clk),
       .reset(reset),
       .re(dataRamReadEna),
       .we({4{dataRamWriteEna}}),
-      .addr(aluResult[11:0]),
+      .addr(aluResult[13:2]),
       .din(dataRamWriteData),
       .dout(dataRamReadData)
   );
