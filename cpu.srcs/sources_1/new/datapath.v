@@ -141,7 +141,7 @@ module Datapath (
   );
 
   LRController lr_controller (
-      .opcode (ir[5:0]),
+      .opcode (ir[31:26]),
       .lrWrite(lrWrite)
   );
 
@@ -187,7 +187,7 @@ module Datapath (
 
   // lui Ö¸Áî¿ØÖÆ
   LUIController lui_controller (
-      .opcode(ir[5:0]),
+      .opcode(ir[31:26]),
       .shamtImm16(shamtImm16)
   );
 
