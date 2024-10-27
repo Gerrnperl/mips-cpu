@@ -309,6 +309,30 @@ module MainInstDecode (
         regDst = 0;
         aluOp = 4'b0001;
       end
+      6'b001010: begin  // slti
+        jump = 0;
+        branch = 0;
+        aluSrcA = 0;
+        aluSrcB = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b1100;
+      end
+      6'b001011: begin  // sltiu
+        jump = 0;
+        branch = 0;
+        aluSrcA = 0;
+        aluSrcB = 1;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 1;
+        regDst = 0;
+        aluOp = 4'b1101;
+      end
       6'b000010: begin  // jr
         jump = 1;
         branch = 0;
