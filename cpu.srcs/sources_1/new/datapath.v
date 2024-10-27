@@ -1,7 +1,7 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: HFUT
+// Engineer: Lu Jipeng, 2022217492 
 // 
 // Create Date: 2024/10/26 14:52:24
 // Design Name: 
@@ -33,7 +33,7 @@
 // | RegDst | 寄存器写地址选择 | 选择指令rt域 | 选择指令rd域 |
 // | ALU\_Control | 4位ALU操作控制 |  |  |
 
-
+//module: Datapath 数据通路
 module Datapath (
     input wire clka,
     input wire reset,
@@ -79,6 +79,7 @@ module Datapath (
   wire shamtImm16;
   wire [4:0] shamt;
 
+  // ALU Flags
   wire zero;
   wire negative;
   wire carry;
@@ -89,6 +90,11 @@ module Datapath (
   // pcJump = (PC+4)[31..28], addr, 0,0
   assign pcJump = {pcPlus4[31:28], ir[25:0], 2'b00};
 
+  // PC = {
+  //  PC + 4,
+  //  PC + 4 + branchAddrImm * 4, // b* 指令
+  //  (PC + 4)[31..28], addr, 0,0,  // j 指令
+  // }
   PCSelect pc_select (
       .pcPlus4(pcPlus4),
       .pcBranch(pcBranch),
@@ -116,6 +122,7 @@ module Datapath (
       .sum(pcPlus4)
   );
 
+  // bTarget = immExt << 2
   ShiftLeft32_2 b_target_shift (
       .inp(immExt),
       .out(bTarget)
@@ -127,6 +134,7 @@ module Datapath (
       .sum(pcBranch)
   );
 
+  // 扩展 I-type 指令的立即数
   SignExtend16_32 sign_extend_imm (
       .inp(ir[15:0]),  // imm
       .out(immExt)
@@ -137,6 +145,10 @@ module Datapath (
       .lrWrite(lrWrite)
   );
 
+  // 选择寄存器写入数据
+  // 0. ALU 输出
+  // 1. 存储器读取数据
+  // 2,3. PC (jal指令)
   Select4_1 #(32) mem2reg_select (
       .inp0(aluResult),
       .inp1(memReadData),
@@ -147,6 +159,10 @@ module Datapath (
       .out (regWriteData)
   );
 
+  // 选择寄存器写入地址
+  // 0. rt
+  // 1. rd
+  // 2,3. lr <- PC
   Select4_1 #(5) reg_dst_select (
       .inp0(ir[20:16]),          // rt
       .inp1(ir[15:11]),          // rd
@@ -169,6 +185,7 @@ module Datapath (
       .rdata2(regData2)
   );
 
+  // lui 指令控制
   LUIController lui_controller (
       .opcode(ir[5:0]),
       .shamtImm16(shamtImm16)
@@ -176,12 +193,15 @@ module Datapath (
 
   Select2_1 #(32) shamt_select (
       .inp0(ir[10:6]),
-      .inp1(5'b10000), // 左移16位
+      .inp1(5'b10000),    // 左移16位
       .sel (shamtImm16),
       .enb (1'b0),
       .out (shamt)
   );
 
+  // 选择 ALU A输入
+  // 0. rs
+  // 1. shamt or 立即数16(lui)
   Select2_1 #(32) alu_srcA_select (
       .inp0(regData1),
       .inp1(shamt),
@@ -190,6 +210,9 @@ module Datapath (
       .out (aluSrcASelect)
   );
 
+  // 选择 ALU B输入
+  // 0. rt
+  // 1. 立即数 (符号扩展后, I-type)
   Select2_1 #(32) alu_srcB_select (
       .inp0(regData2),
       .inp1(immExt),

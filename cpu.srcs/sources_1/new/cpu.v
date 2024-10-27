@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: HFUT
+// Engineer: Lu Jipeng, 2022217492 
 // 
 // Create Date: 2024/10/26 17:04:51
 // Design Name: 
 // Module Name: cpu
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -19,6 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
+//module: CPU MIPS 处理器，包含控制器和数据通路
 module CPU (
     input wire clk,
     input wire reset,

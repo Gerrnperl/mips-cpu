@@ -6,7 +6,7 @@
 // Create Date: 2024/10/25 21:10:19
 // Design Name: 
 // Module Name: control
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -16,6 +16,7 @@
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
+// 控制器模块，包括指令译码、ALU控制及特殊指令处理
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
@@ -86,6 +87,8 @@ module LUIController (
     
 endmodule
 
+//module: PCSelect PC选择器
+// 根据指令操作码、Jump & Branch 控制信号、ALU Flags 选择下一条指令地址
 module PCSelect (
     input wire [31:0] pcPlus4,
     input wire [31:0] pcBranch,
@@ -133,6 +136,7 @@ module PCSelect (
 
 endmodule
 
+//module: MainInstDecode 主指令译码
 module MainInstDecode (
     input wire [31:0] instruction,
     output reg jump,
@@ -346,6 +350,7 @@ module MainInstDecode (
 
 endmodule
 
+//module: ALUDecode ALU控制信号译码
 module ALUDecode (
     input  wire [5:0] func,
     input  wire [3:0] aluOp,
@@ -390,6 +395,7 @@ module ALUDecode (
 
 endmodule
 
+//module: Controller 控制器
 module Controller (
     input wire [31:0] instruction,
     output wire jump,

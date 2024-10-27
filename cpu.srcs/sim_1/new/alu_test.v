@@ -6,7 +6,7 @@
 // Create Date: 2024/10/23 21:20:26
 // Design Name: 
 // Module Name: alu_test
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 

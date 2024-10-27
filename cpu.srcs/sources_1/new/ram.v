@@ -6,7 +6,7 @@
 // Create Date: 2024/10/24 02:51:05
 // Design Name: 
 // Module Name: ram
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 

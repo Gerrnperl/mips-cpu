@@ -6,7 +6,7 @@
 // Create Date: 2024/10/23 21:22:45
 // Design Name: 
 // Module Name: utils
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -16,6 +16,7 @@
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
+// 工具类模块，包含一些转码、选择器等功能
 // 
 //////////////////////////////////////////////////////////////////////////////////
 

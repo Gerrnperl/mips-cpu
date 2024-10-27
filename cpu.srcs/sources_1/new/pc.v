@@ -1,12 +1,12 @@
 `timescale 1ns / 1ps
 //////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
+// Company: HFUT
+// Engineer: Lu Jipeng, 2022217492 
 // 
 // Create Date: 2024/10/26 14:52:09
 // Design Name: 
 // Module Name: pc
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -20,6 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
+//module: PC ³ÌÐò¼ÆÊýÆ÷
 module PC(
         input wire clk,
         input wire reset,

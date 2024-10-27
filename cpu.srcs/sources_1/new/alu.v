@@ -6,7 +6,7 @@
 // Create Date: 2024/10/23 20:35:44
 // Design Name: 
 // Module Name: ALU
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -16,10 +16,15 @@
 // Revision:
 // Revision 0.01 - File Created
 // Additional Comments:
+// 算术逻辑单元
+// 自定ALU操作码表
 //
 //////////////////////////////////////////////////////////////////////////////////
 
-// module: ALU
+// module: ALU 算术逻辑单元
+// 根据4位操作码func，对两个32位操作数a、b进行运算，输出32位结果result
+// 输出负标志negative、零标志zero、进位标志carry、溢出标志overflow
+// 
 // | 操作码 (func)  | 操作             | 结果 (result)                   | 进位标志 (carry)  | 溢出标志 (overflow) |
 // |---------------|-----------------|--------------------------------|------------------|---------------------|
 // | 0000          | signed add      | a + b                          | 进位为1           | 溢出为1              |
@@ -38,6 +43,7 @@
 // | 1101          | sltu            | (a < b) ? 1 : 0                | 0                | 0                   |
 // | 1110          | nor             | ~(a \| b)                      | 0                | 0                   |
 // | default       | default         | 0                              | 0                | 0                   |
+//
 // * 加减法无符号溢出时，进位标志为1
 // * 加减法有符号溢出时，溢出标志为1
 // * 负标志判断不考虑操作数的形式，忽略溢出，仅在result[31]为1时为1

@@ -6,7 +6,7 @@
 // Create Date: 2024/10/25 20:54:22
 // Design Name: 
 // Module Name: reg_test
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 

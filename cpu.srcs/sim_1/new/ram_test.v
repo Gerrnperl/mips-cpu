@@ -6,7 +6,7 @@
 // Create Date: 2024/10/24 14:45:43
 // Design Name: 
 // Module Name: ram_test
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 

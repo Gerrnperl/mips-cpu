@@ -6,7 +6,7 @@
 // Create Date: 2024/10/23 21:59:02
 // Design Name: 
 // Module Name: top
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 
@@ -19,7 +19,7 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-
+//module: top
 module top (
     input wire clk,
     input wire reset

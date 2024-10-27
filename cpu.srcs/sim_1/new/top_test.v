@@ -6,7 +6,7 @@
 // Create Date: 2024/10/27 00:00:37
 // Design Name: 
 // Module Name: top_test
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 

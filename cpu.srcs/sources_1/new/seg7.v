@@ -6,7 +6,7 @@
 // Create Date: 2024/10/23 20:59:47
 // Design Name: 
 // Module Name: seg7
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 

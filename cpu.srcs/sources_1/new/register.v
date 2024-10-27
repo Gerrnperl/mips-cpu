@@ -6,7 +6,7 @@
 // Create Date: 2024/10/25 14:59:40
 // Design Name: 
 // Module Name: register
-// Project Name: 
+// Project Name: mips-cpu
 // Target Devices: 
 // Tool Versions: 
 // Description: 
