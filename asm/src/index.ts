@@ -2,16 +2,21 @@ import * as fs from "fs";
 import { Assembler } from "./asm.js";
 import { bin, coe, readable } from "./codegen.js";
 
+const thisFile = process.argv[1];
 const filename = process.argv[2];
+const usage = thisFile.endsWith(".ts") ?
+    "Usage: ts-node --esm " + thisFile + " <filename> [<output.bin>] [<output.coe>] [<output.txt>]" :
+	"Usage: node " + thisFile + " <filename> [<output.bin>] [<output.coe>] [<output.txt>]";
+
 if (!filename) {
-	console.error("Usage: pnpm exec ts-node --esm ./index.js <filename> [<output.bin>] [<output.coe>] [<output.txt>]");
+	console.error(usage);
 	process.exit(1);
 }
 
 const outputs = process.argv.slice(3);
 
 if (outputs.length === 0) {
-	console.error("No output specified");
+	console.error(usage);
 }
 
 (async () => {

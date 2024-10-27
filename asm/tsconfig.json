@@ -19,5 +19,8 @@
 	"compilerOptions": {
 	  // typescript options here
 	  "moduleResolution": "Node16",
+	  // build dist
+	  "outDir": "dist",
+	  "rootDir": "src",
 	}
   }
