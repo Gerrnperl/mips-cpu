@@ -50,6 +50,7 @@ module CPU (
       .branch(branch),
       .aluSrcA(aluSrcA),
       .aluSrcB(aluSrcB),
+      .memRead(dataRamReadEna),
       .memWrite(dataRamWriteEna),
       .memToReg(memToReg),
       .regWrite(regWrite),
