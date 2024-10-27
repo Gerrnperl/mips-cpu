@@ -23,7 +23,7 @@
 module Regfiles (
     input clk,  //寄存器组时钟信号，下降沿写入数据
     input reset,
-    input we,  //寄存器读写有效信号,低电平时允许寄存器写入数据，高电平时允许寄存器读出数据
+    input we,  //寄存器读写有效信号,高电平时允许寄存器写入数据，低电平时允许寄存器读出数据
     input [4:0] raddr1,  //所需读取的寄存器的地址
     input [4:0] raddr2,  //所需读取的寄存器的地址
     input [4:0] waddr,  //写寄存器的地址
@@ -51,7 +51,7 @@ module Regfiles (
       Regfile u_regfile (
           .clk(clk),
           .reset(reset),
-          .we(~reg_enb[i]),
+          .we(reg_enb[i]),
           .wdata(wdata),
           .rdata(rdata[i])
       );
@@ -97,7 +97,7 @@ module Regfiles (
     .inp31(rdata[31]),
 
     .sel(raddr1),
-    .enb(not_we),
+    .enb(1'b1),
     .out(rdata1)
   );
 
@@ -136,7 +136,7 @@ module Regfiles (
     .inp31(rdata[31]),
 
     .sel(raddr2),
-    .enb(not_we),
+    .enb(1'b1),
     .out(rdata2)
   );
 
@@ -163,7 +163,7 @@ module Regfile (
   always @(posedge clk or negedge reset) begin
     if (!reset) begin
       register <= 32'b0;
-    end else if (!we) begin
+    end else if (we) begin
       register <= wdata;
     end
   end

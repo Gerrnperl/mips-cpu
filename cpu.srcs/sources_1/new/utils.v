@@ -58,7 +58,7 @@ module Decode5_32 (
 );
 
   always @(inp or enb) begin
-    if (!enb) begin
+    if (enb) begin
       for (integer i = 0; i < 32; i = i + 1) begin
         if (i == inp) begin
           out = 32'b1 << i;
@@ -74,7 +74,7 @@ endmodule
 // module: Select32_1 32选1选择器
 // 每个输入信号为32位
 // 选择信号为5位
-// 使能信号为1位, 0为选择输入信号, 1为输出0
+// 使能信号为1位, 1为选择输入信号, 0为输出0
 module Select32_1 (
     input [31:0] inp0,
     input [31:0] inp1,
@@ -115,7 +115,7 @@ module Select32_1 (
 );
 
   always @(*) begin
-    if (!enb) begin
+    if (enb) begin
       case (sel)
         5'b00000: out = inp0;
         5'b00001: out = inp1;
