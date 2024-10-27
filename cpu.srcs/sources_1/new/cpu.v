@@ -39,7 +39,6 @@ module CPU (
   wire branch;
   wire aluSrcA;
   wire aluSrcB;
-  wire memWrite;
   wire memToReg;
   wire regWrite;
   wire regDst;
