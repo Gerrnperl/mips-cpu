@@ -38,7 +38,7 @@ export class Assembler {
 				console.error(`${line!.srcLine + 1}: ${lines[line!.srcLine]}`);
 				failed = true;
 			}
-		});
+		}).concat([0xffffffff]);
 		if (failed) {
 			console.error('\x1b[31mAssembly failed\x1b[0m');
 			return null;
@@ -46,7 +46,7 @@ export class Assembler {
 		return {
 			binary: binary as number[],
 			symbolTable: this.symbolTable,
-			codeLines: preprocessed.map(line => line.text)
+			codeLines: preprocessed.map(line => line.text).concat(['<Halt>'])
 		}
 	}
 

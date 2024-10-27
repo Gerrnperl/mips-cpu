@@ -105,9 +105,10 @@ module PCSelect (
     output reg [31:0] pcNext
 );
 
-
   always @(*) begin
-    if (jump) begin  // J-type instructions
+    if (opcode == 6'b111111) begin  // halt
+      pcNext = pcPlus4 - 4;
+    end else if (jump) begin  // J-type instructions
       pcNext = pcJump;
     end else if (branch) begin  // Jump 为 0 时，PC 由 Branch 控制
       case (opcode)
@@ -356,6 +357,18 @@ module MainInstDecode (
         regWrite = 0;
         regDst = 0;
         aluOp = 4'b1111;
+      end
+      6'b111111: begin  // halt
+        jump = 0;
+        branch = 0;
+        aluSrcA = 0;
+        aluSrcB = 0;
+        memRead = 0;
+        memWrite = 0;
+        memToReg = 0;
+        regWrite = 0;
+        regDst = 0;
+        aluOp = 4'b0000;
       end
       default: begin
         jump = 0;
