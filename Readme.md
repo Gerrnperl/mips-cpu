@@ -141,6 +141,32 @@
 * 负标志判断不考虑操作数的形式，忽略溢出，仅在result[31]为1时为1
 * 零标志在result为0时为1
 
+### 内存 RAM
+
+配置两个 32 位 4096 字节的 RAM，分别用于指令存储和数据存储。
+
+配置信息如下：
+- 指令 RAM
+  - Component Name: `blk_mem_gen_0`
+  - Interface Type: `Native`
+  - Byte Size: 8 bits(无校验位)
+  - Memory Type: `Single Port RAM`
+  - Write/Read Width: 32 bits
+  - Write/Read Depth: 4096
+  - [ ] Primitive Output Register: `Off` (避免第一个读数据的延迟)
+  - [x] Load Init File: `On` (提供一个 COE 文件作为初始内容)
+  - [x] Fill Remaining Memory Locations: `On` (剩余位置填充0) 
+- 数据 RAM
+  - Component Name: `blk_mem_gen_1`
+  - Interface Type: `Native`
+  - Byte Size: 8 bits(无校验位)
+  - Memory Type: `Single Port RAM`
+  - Write/Read Width: 32 bits
+  - Write/Read Depth: 4096
+  - [ ] Primitive Output Register: `Off` (避免第一个读数据的延迟)
+  - [ ] Load Init File: `Off` (不加载初始内容)
+  - [x] Fill Remaining Memory Locations: `On` (剩余位置填充0)
+
 ## 汇编器
 
 在 [asm](./asm) 目录下提供了一个简单的汇编器，使用 TypeScript 编写。支持的指令集与 CPU 设计中的指令集一致。
