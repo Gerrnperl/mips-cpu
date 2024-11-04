@@ -1,3 +1,2 @@
-cpu.ip_user_files/* linguist-vendored
-# generated ip
-cpu.srcs/sources_1/ip/* linguist-vendored
+cpu.ip_user_files/** linguist-vendored
+cpu.srcs/sources_1/ip/** linguist-vendored
