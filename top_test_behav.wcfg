@@ -12,12 +12,12 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="111349935fs"></ZoomEndTime>
-      <Cursor1Time time="14358000fs"></Cursor1Time>
+      <ZoomEndTime time="202327187fs"></ZoomEndTime>
+      <Cursor1Time time="0fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="175"></NameColumnWidth>
-      <ValueColumnWidth column_width="127"></ValueColumnWidth>
+      <ValueColumnWidth column_width="123"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="17" />
    <wvobject fp_name="/top_test/clk" type="logic">
@@ -177,13 +177,17 @@
          <obj_property name="ElementShortName">an[7:0]</obj_property>
          <obj_property name="ObjectShortName">an[7:0]</obj_property>
       </wvobject>
-      <wvobject fp_name="/top_test/uut/display/seg" type="array">
-         <obj_property name="ElementShortName">seg[7:0]</obj_property>
-         <obj_property name="ObjectShortName">seg[7:0]</obj_property>
-      </wvobject>
       <wvobject fp_name="/top_test/uut/display/clk_seg_div" type="logic">
          <obj_property name="ElementShortName">clk_seg_div</obj_property>
          <obj_property name="ObjectShortName">clk_seg_div</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/seg1" type="array">
+         <obj_property name="ElementShortName">seg1[7:0]</obj_property>
+         <obj_property name="ObjectShortName">seg1[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/seg2" type="array">
+         <obj_property name="ElementShortName">seg2[7:0]</obj_property>
+         <obj_property name="ObjectShortName">seg2[7:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject fp_name="group294" type="group">
