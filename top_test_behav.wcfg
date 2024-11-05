@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="top_test_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="top_test" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="111349935fs"></ZoomEndTime>
+      <Cursor1Time time="14358000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="175"></NameColumnWidth>
+      <ValueColumnWidth column_width="127"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="17" />
+   <wvobject fp_name="/top_test/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/cpu_clk" type="logic">
+      <obj_property name="ElementShortName">cpu_clk</obj_property>
+      <obj_property name="ObjectShortName">cpu_clk</obj_property>
+      <obj_property name="CustomSignalColor">#00FFFF</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+      <obj_property name="CustomSignalColor">#FAAFBE</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/pc" type="array">
+      <obj_property name="ElementShortName">pc[31:0]</obj_property>
+      <obj_property name="ObjectShortName">pc[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/ir" type="array">
+      <obj_property name="ElementShortName">ir[31:0]</obj_property>
+      <obj_property name="ObjectShortName">ir[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/cpu/aluResult" type="array">
+      <obj_property name="ElementShortName">aluResult[31:0]</obj_property>
+      <obj_property name="ObjectShortName">aluResult[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/waddr" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">waddr[4:0]</obj_property>
+      <obj_property name="ObjectShortName">waddr[4:0]</obj_property>
+      <obj_property name="label">Reg Write Addr[4:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FF7F</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/wdata" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">wdata[31:0]</obj_property>
+      <obj_property name="label">Reg Write Data[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FF7F</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/dataRamAddr" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">dataRamAddr[11:0]</obj_property>
+      <obj_property name="ObjectShortName">dataRamAddr[11:0]</obj_property>
+      <obj_property name="label">DRam Write Addr[11:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FF7F</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="/top_test/uut/dataRamWriteData" type="array">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">dataRamWriteData[31:0]</obj_property>
+      <obj_property name="ObjectShortName">dataRamWriteData[31:0]</obj_property>
+      <obj_property name="label">DRam Write Data[31:0]</obj_property>
+      <obj_property name="CustomSignalColor">#00FF7F</obj_property>
+      <obj_property name="UseCustomSignalColor">true</obj_property>
+   </wvobject>
+   <wvobject fp_name="group128" type="group">
+      <obj_property name="label">IF</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/top_test/uut/instRamReadEna" type="logic">
+         <obj_property name="ElementShortName">instRamReadEna</obj_property>
+         <obj_property name="ObjectShortName">instRamReadEna</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/inst_ram/en" type="logic">
+         <obj_property name="ElementShortName">en</obj_property>
+         <obj_property name="ObjectShortName">en</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/pc" type="array">
+         <obj_property name="ElementShortName">pc[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pc[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group195" type="group">
+      <obj_property name="label">Control</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/top_test/uut/cpu/jump" type="logic">
+         <obj_property name="ElementShortName">jump</obj_property>
+         <obj_property name="ObjectShortName">jump</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/branch" type="logic">
+         <obj_property name="ElementShortName">branch</obj_property>
+         <obj_property name="ObjectShortName">branch</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/aluSrcA" type="logic">
+         <obj_property name="ElementShortName">aluSrcA</obj_property>
+         <obj_property name="ObjectShortName">aluSrcA</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/aluSrcB" type="logic">
+         <obj_property name="ElementShortName">aluSrcB</obj_property>
+         <obj_property name="ObjectShortName">aluSrcB</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/memToReg" type="logic">
+         <obj_property name="ElementShortName">memToReg</obj_property>
+         <obj_property name="ObjectShortName">memToReg</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/regWrite" type="logic">
+         <obj_property name="ElementShortName">regWrite</obj_property>
+         <obj_property name="ObjectShortName">regWrite</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/regDst" type="logic">
+         <obj_property name="ElementShortName">regDst</obj_property>
+         <obj_property name="ObjectShortName">regDst</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/aluControl" type="array">
+         <obj_property name="ElementShortName">aluControl[3:0]</obj_property>
+         <obj_property name="ObjectShortName">aluControl[3:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group228" type="group">
+      <obj_property name="label">Data RAM</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/top_test/uut/dataRamAddr" type="array">
+         <obj_property name="ElementShortName">dataRamAddr[11:0]</obj_property>
+         <obj_property name="ObjectShortName">dataRamAddr[11:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/dataRamReadEna" type="logic">
+         <obj_property name="ElementShortName">dataRamReadEna</obj_property>
+         <obj_property name="ObjectShortName">dataRamReadEna</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/dataRamWriteEna" type="logic">
+         <obj_property name="ElementShortName">dataRamWriteEna</obj_property>
+         <obj_property name="ObjectShortName">dataRamWriteEna</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/dataRamWriteData" type="array">
+         <obj_property name="ElementShortName">dataRamWriteData[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataRamWriteData[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/dataRamReadData" type="array">
+         <obj_property name="ElementShortName">dataRamReadData[31:0]</obj_property>
+         <obj_property name="ObjectShortName">dataRamReadData[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group261" type="group">
+      <obj_property name="label">Display</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/top_test/uut/halt_display/halt" type="logic">
+         <obj_property name="ElementShortName">halt</obj_property>
+         <obj_property name="ObjectShortName">halt</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/display/data" type="array">
+         <obj_property name="ElementShortName">data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/display/ena" type="logic">
+         <obj_property name="ElementShortName">ena</obj_property>
+         <obj_property name="ObjectShortName">ena</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/display/an" type="array">
+         <obj_property name="ElementShortName">an[7:0]</obj_property>
+         <obj_property name="ObjectShortName">an[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/display/seg" type="array">
+         <obj_property name="ElementShortName">seg[7:0]</obj_property>
+         <obj_property name="ObjectShortName">seg[7:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/display/clk_seg_div" type="logic">
+         <obj_property name="ElementShortName">clk_seg_div</obj_property>
+         <obj_property name="ObjectShortName">clk_seg_div</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group294" type="group">
+      <obj_property name="label">PCelect</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/pcPlus4" type="array">
+         <obj_property name="ElementShortName">pcPlus4[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pcPlus4[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/pcBranch" type="array">
+         <obj_property name="ElementShortName">pcBranch[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pcBranch[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/pcJump" type="array">
+         <obj_property name="ElementShortName">pcJump[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pcJump[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/pcNext" type="array">
+         <obj_property name="ElementShortName">pcNext[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pcNext[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group297" type="group">
+      <obj_property name="label">Data path</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regData1" type="array">
+         <obj_property name="ElementShortName">regData1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">regData1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regData2" type="array">
+         <obj_property name="ElementShortName">regData2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">regData2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/immExt" type="array">
+         <obj_property name="ElementShortName">immExt[31:0]</obj_property>
+         <obj_property name="ObjectShortName">immExt[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/aluSrcASelect" type="array">
+         <obj_property name="ElementShortName">aluSrcASelect[31:0]</obj_property>
+         <obj_property name="ObjectShortName">aluSrcASelect[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/aluSrcBSelect" type="array">
+         <obj_property name="ElementShortName">aluSrcBSelect[31:0]</obj_property>
+         <obj_property name="ObjectShortName">aluSrcBSelect[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regWriteData" type="array">
+         <obj_property name="ElementShortName">regWriteData[31:0]</obj_property>
+         <obj_property name="ObjectShortName">regWriteData[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regWriteDst" type="array">
+         <obj_property name="ElementShortName">regWriteDst[4:0]</obj_property>
+         <obj_property name="ObjectShortName">regWriteDst[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/bTarget" type="array">
+         <obj_property name="ElementShortName">bTarget[31:0]</obj_property>
+         <obj_property name="ObjectShortName">bTarget[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regLR" type="array">
+         <obj_property name="ElementShortName">regLR[4:0]</obj_property>
+         <obj_property name="ObjectShortName">regLR[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/lrWrite" type="logic">
+         <obj_property name="ElementShortName">lrWrite</obj_property>
+         <obj_property name="ObjectShortName">lrWrite</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regWriteAndLR" type="logic">
+         <obj_property name="ElementShortName">regWriteAndLR</obj_property>
+         <obj_property name="ObjectShortName">regWriteAndLR</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/shamtImm16" type="logic">
+         <obj_property name="ElementShortName">shamtImm16</obj_property>
+         <obj_property name="ObjectShortName">shamtImm16</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/shamt" type="array">
+         <obj_property name="ElementShortName">shamt[4:0]</obj_property>
+         <obj_property name="ObjectShortName">shamt[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/zero" type="logic">
+         <obj_property name="ElementShortName">zero</obj_property>
+         <obj_property name="ObjectShortName">zero</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/negative" type="logic">
+         <obj_property name="ElementShortName">negative</obj_property>
+         <obj_property name="ObjectShortName">negative</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/carry" type="logic">
+         <obj_property name="ElementShortName">carry</obj_property>
+         <obj_property name="ObjectShortName">carry</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/overflow" type="logic">
+         <obj_property name="ElementShortName">overflow</obj_property>
+         <obj_property name="ObjectShortName">overflow</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/memReadData" type="array">
+         <obj_property name="ElementShortName">memReadData[31:0]</obj_property>
+         <obj_property name="ObjectShortName">memReadData[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/memWriteData" type="array">
+         <obj_property name="ElementShortName">memWriteData[31:0]</obj_property>
+         <obj_property name="ObjectShortName">memWriteData[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="group296" type="group">
+      <obj_property name="label">Register</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/clk" type="logic">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/reset" type="logic">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/we" type="logic">
+         <obj_property name="ElementShortName">we</obj_property>
+         <obj_property name="ObjectShortName">we</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/raddr1" type="array">
+         <obj_property name="ElementShortName">raddr1[4:0]</obj_property>
+         <obj_property name="ObjectShortName">raddr1[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/raddr2" type="array">
+         <obj_property name="ElementShortName">raddr2[4:0]</obj_property>
+         <obj_property name="ObjectShortName">raddr2[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/waddr" type="array">
+         <obj_property name="ElementShortName">waddr[4:0]</obj_property>
+         <obj_property name="ObjectShortName">waddr[4:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/wdata" type="array">
+         <obj_property name="ElementShortName">wdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/rdata1" type="array">
+         <obj_property name="ElementShortName">rdata1[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata1[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/rdata2" type="array">
+         <obj_property name="ElementShortName">rdata2[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata2[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/reg_enb" type="array">
+         <obj_property name="ElementShortName">reg_enb[31:0]</obj_property>
+         <obj_property name="ObjectShortName">reg_enb[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/rdata" type="array">
+         <obj_property name="ElementShortName">rdata[31:0][31:0]</obj_property>
+         <obj_property name="ObjectShortName">rdata[31:0][31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/not_we" type="logic">
+         <obj_property name="ElementShortName">not_we</obj_property>
+         <obj_property name="ObjectShortName">not_we</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/\regfiles[0].u_regfile /register" type="array">
+         <obj_property name="ElementShortName">register[31:0]</obj_property>
+         <obj_property name="ObjectShortName">register[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/\regfiles[1].u_regfile /register" type="array">
+         <obj_property name="ElementShortName">register[31:0]</obj_property>
+         <obj_property name="ObjectShortName">register[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/\regfiles[2].u_regfile /register" type="array">
+         <obj_property name="ElementShortName">register[31:0]</obj_property>
+         <obj_property name="ObjectShortName">register[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/\regfiles[3].u_regfile /register" type="array">
+         <obj_property name="ElementShortName">register[31:0]</obj_property>
+         <obj_property name="ObjectShortName">register[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/\regfiles[4].u_regfile /register" type="array">
+         <obj_property name="ElementShortName">register[31:0]</obj_property>
+         <obj_property name="ObjectShortName">register[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/top_test/uut/cpu/datapath/regfiles0/\regfiles[5].u_regfile /register" type="array">
+         <obj_property name="ElementShortName">register[31:0]</obj_property>
+         <obj_property name="ObjectShortName">register[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>
