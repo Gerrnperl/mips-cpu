@@ -27,7 +27,8 @@ module top (
     output wire halt,
     // 拨码开关，用于指示显示内存的地址
     input wire [15:0] sw,
-    output wire [7:0] seg,
+    output wire [7:0] seg1,
+    output wire [7:0] seg2,
     output wire [7:0] an
 );
 
@@ -98,9 +99,13 @@ module top (
   Display display (
       .clk(clk),
       .data(dataRamReadData),
-      .ena(halt),
+      // .data(32'h12345678),
+      // .ena(halt),
+      // .data(pc),
+      .ena(1'b1),
       .an(an),
-      .seg(seg)
+      .seg1(seg1),
+      .seg2(seg2)
   );
 endmodule
 

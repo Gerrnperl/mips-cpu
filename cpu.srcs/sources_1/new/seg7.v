@@ -27,7 +27,8 @@ module Display (
     // 七段数码管的位选信号
     output [7:0] an,
     // 七段数码管的段选信号
-    output [7:0] seg
+    output [7:0] seg1,
+    output [7:0] seg2
 );
 
   wire clk_seg_div;
@@ -37,18 +38,19 @@ module Display (
   );
 
   EightSeg7 eightSeg7 (
-      .clk (clk),
+      .clk (clk_seg_div),
       .ena (ena),
-      .seg0(data[3:0]),
-      .seg1(data[7:4]),
-      .seg2(data[11:8]),
-      .seg3(data[15:12]),
-      .seg4(data[19:16]),
-      .seg5(data[23:20]),
-      .seg6(data[27:24]),
-      .seg7(data[31:28]),
+      .seg0(data[31:28]),
+      .seg1(data[27:24]),
+      .seg2(data[23:20]),
+      .seg3(data[19:16]),
+      .seg4(data[15:12]),
+      .seg5(data[11:8]),
+      .seg6(data[7:4]),
+      .seg7(data[3:0]),
       .an  (an),
-      .seg (seg)
+      .segout1 (seg1),
+      .segout2 (seg2)
   );
 
 endmodule
@@ -68,14 +70,33 @@ module EightSeg7 (
     // 七段数码管的位选信号
     output reg [7:0] an,
     // 七段数码管的段选信号
-    output [7:0] seg
+    output reg [7:0] segout1,
+    output reg [7:0] segout2
 );
   reg [2:0] state;
-  reg [3:0] bcd;
+  reg [3:0] bin;
+  
+  wire [7:0] seg;
+
   Seg7Decoder decoder (
-      .bcd(bcd),
+      .bin(bin),
       .seg(seg)
   );
+
+  always @(*) begin
+    case (an)
+      8'b00000001: segout1 = seg;
+      8'b00000010: segout1 = seg;
+      8'b00000100: segout1 = seg;
+      8'b00001000: segout1 = seg;
+      8'b00010000: segout2 = seg;
+      8'b00100000: segout2 = seg;
+      8'b01000000: segout2 = seg;
+      8'b10000000: segout2 = seg;
+      default: begin segout1 = 8'h00; segout2 = 8'h00; end
+    endcase
+  end
+  
 
   always @(posedge clk) begin
     if (ena) begin
@@ -88,41 +109,41 @@ module EightSeg7 (
       case (state)
         3'b000: begin
           an  = 8'b00000001;
-          bcd = seg0;
+          bin = seg0;
         end
         3'b001: begin
           an  = 8'b00000010;
-          bcd = seg1;
+          bin = seg1;
         end
         3'b010: begin
           an  = 8'b00000100;
-          bcd = seg2;
+          bin = seg2;
         end
         3'b011: begin
           an  = 8'b00001000;
-          bcd = seg3;
+          bin = seg3;
         end
         3'b100: begin
           an  = 8'b00010000;
-          bcd = seg4;
+          bin = seg4;
         end
         3'b101: begin
           an  = 8'b00100000;
-          bcd = seg5;
+          bin = seg5;
         end
         3'b110: begin
           an  = 8'b01000000;
-          bcd = seg6;
+          bin = seg6;
         end
         3'b111: begin
           an  = 8'b10000000;
-          bcd = seg7;
+          bin = seg7;
         end
       endcase
     end
     else begin
       an  = 8'b00000000;
-      bcd = 4'h0;
+      bin = 4'h0;
     end
   end
 
@@ -133,29 +154,30 @@ module EightSeg7 (
 endmodule
 
 // 七段数码管解码器
-// 4位BCD码 -> 8位七段数码管
+// 4位二进制数 -> 8位七段数码管
 module Seg7Decoder (
-    input [3:0] bcd,
+    input [3:0] bin,
     output reg [7:0] seg
 );
   always @(*) begin
-    case (bcd)
-      4'h0:    seg = 8'hfc;
-      4'h1:    seg = 8'h60;
-      4'h2:    seg = 8'hda;
-      4'h3:    seg = 8'hf2;
-      4'h4:    seg = 8'h66;
-      4'h5:    seg = 8'hb6;
-      4'h6:    seg = 8'hbe;
-      4'h7:    seg = 8'he0;
-      4'h8:    seg = 8'hfe;
-      4'h9:    seg = 8'hf6;
-      4'ha:    seg = 8'hee;
-      4'hb:    seg = 8'h3e;
-      4'hc:    seg = 8'h9c;
-      4'hd:    seg = 8'h7a;
-      4'he:    seg = 8'h9e;
-      4'hf:    seg = 8'h8e;
+    case (bin)
+      // dp g f e d c b a
+      4'h0:    seg = 8'b00111111;
+      4'h1:    seg = 8'b00000110;
+      4'h2:    seg = 8'b01011011;
+      4'h3:    seg = 8'b01001111;
+      4'h4:    seg = 8'b01100110;
+      4'h5:    seg = 8'b01101101;
+      4'h6:    seg = 8'b01111101;
+      4'h7:    seg = 8'b00100111;
+      4'h8:    seg = 8'b01111111;
+      4'h9:    seg = 8'b01101111;
+      4'ha:    seg = 8'b01110111;
+      4'hb:    seg = 8'b01111100;
+      4'hc:    seg = 8'b00111001;
+      4'hd:    seg = 8'b01011110;
+      4'he:    seg = 8'b01111001;
+      4'hf:    seg = 8'b01110001;
       default: seg = 8'h00;
     endcase
   end

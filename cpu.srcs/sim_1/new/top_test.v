@@ -26,7 +26,8 @@ module top_test;
 
   wire halt;
   reg [15:0] sw;
-  wire [7:0] seg;
+  wire [7:0] seg1;
+  wire [7:0] seg2;
   wire [7:0] an;
 
   top uut (
@@ -34,7 +35,8 @@ module top_test;
       .reset(rst),
       .halt (halt),
       .sw   (sw),
-      .seg  (seg),
+      .seg1  (seg1),
+      .seg2  (seg2),
       .an   (an)
   );
 
@@ -51,7 +53,16 @@ module top_test;
     rst = 1;
     #140;
     sw = 16'h0000;
-    #100;
+    #1000000;
+    sw = 16'h0001;
+    #1000000;
+    sw = 16'h0002;
+    #1000000;
+    sw = 16'h0003;
+    #1000000;
+    sw = 16'h0004;
+    #1000000;
+    sw = 16'h0005;
     $finish;
   end
 
